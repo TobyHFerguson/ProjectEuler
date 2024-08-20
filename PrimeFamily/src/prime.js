@@ -4,11 +4,6 @@
     return num > 1;
 }
 
-module.exports = {
-    isPrime
-}
-
-
 function* nextCandidate(familySize) {
     var candidate = 11;
     while (true) {
@@ -20,12 +15,27 @@ function* nextCandidate(familySize) {
     }
 }
 
+
 const gen = nextCandidate(6);
 for (let i = 0; i < 100; i++) {
     console.log(gen.next().value);
 }
 
+/**
+ * Determine if a given candidate number contains replacement digits for a given family size
+ * 
+ * Basically, the number needs to contain digits which are low enough to allow for the number of replacements (which is what family size means).
+ * 
+ * e.g. if I have a number 45 then 4 would be the lowest replacement, allowing me to replace with 4,5,6,7,8,9 (i.e a family size of 6). 
+ * 
+ * @param {number} familySize the size of the prime family
+ * @param {number} candidate the number which might have replacements in it
+ * @returns true iff the given candidate contains one or more digits which can be replaced given the family size
+ */
 function containsReplacement(familySize, candidate) {
+    if (familySize > 10) {
+        throw Error(`familySize too large (${familysize}). It must be <= 10`)
+    }
     const replacement = 10 - familySize;
     const c = String(candidate)
     for (var i = 0; i < c.length; i++) {
@@ -35,20 +45,6 @@ function containsReplacement(familySize, candidate) {
     return false
 }
 
-
-function containsReplacementTests() {
-    const t1 = containsReplacement(10, 123456789)
-    console.log('Expecting false: ', t1)
-    const t2 = containsReplacement(10, 1234567890)
-    console.log('Expecting true', t2)
-    const t3 = containsReplacement(9, 2345678)
-    console.log('Expecting false: ', t3)
-
-    const t4 = containsReplacement(9, 1234)
-    console.log('Expecting true', t4)
-}
-
-console.log(containsReplacement(10, 3))
 
 function getRCI(familySize, candidate) {
     const RCI = new Array();
@@ -91,6 +87,10 @@ function findSubsets(nums, n) {
     }
 }
 
+module.exports = {
+    isPrime,
+    containsReplacement
+}
 // Driver Code
 // let arr = [1, 2, 3];
 // let n = arr.length;
