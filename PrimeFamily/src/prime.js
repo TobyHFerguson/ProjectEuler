@@ -4,14 +4,20 @@
     return num > 1;
 }
 
+/**
+ * Return the next candidate number, gauranteeing that it is prime and contains digits
+ * low enough to accommodate the given family size
+ * @param {number} familySize the smallest number of possible replacements
+ */
 function* nextCandidate(familySize) {
-    var candidate = 11;
+    var candidate = 3;
     while (true) {
         while (!isPrime(candidate) || !containsReplacement(familySize, candidate)) {
             candidate +=2
         }
-        yield candidate;
-        candidate += 2;
+        const x = yield candidate;
+        
+        candidate = x ? x : candidate + 2;
     }
 }
 
@@ -89,7 +95,8 @@ function findSubsets(nums, n) {
 
 module.exports = {
     isPrime,
-    containsReplacement
+    containsReplacement,
+    nextCandidate
 }
 // Driver Code
 // let arr = [1, 2, 3];
