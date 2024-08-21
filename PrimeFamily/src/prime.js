@@ -1,4 +1,4 @@
- const isPrime = num => {
+const isPrime = num => {
     for (let i = 2, s = Math.sqrt(num); i <= s; i++)
         if (num % i === 0) return false;
     return num > 1;
@@ -13,10 +13,10 @@ function* nextCandidate(familySize) {
     var candidate = 3;
     while (true) {
         while (!isPrime(candidate) || !containsReplacement(familySize, candidate)) {
-            candidate +=2
+            candidate += 2
         }
         const x = yield candidate;
-        
+
         candidate = x ? x : candidate + 2;
     }
 }
@@ -40,7 +40,7 @@ for (let i = 0; i < 100; i++) {
  */
 function containsReplacement(familySize, candidate) {
     if (familySize > 10) {
-        throw Error(`familySize too large (${familysize}). It must be <= 10`)
+        throw Error(`familySize too large (${familySize}). It must be <= 10`)
     }
     const replacement = 10 - familySize;
     const c = String(candidate)
@@ -51,7 +51,12 @@ function containsReplacement(familySize, candidate) {
     return false
 }
 
-
+/**
+ * Return the an array of those digits in the candidate that can be replaced, given the family size
+ * @param {number} familySize the family size
+ * @param {number} candidate the candidate number
+ * @returns {array[number]} the indices of the replaceable digits
+ */
 function getRCI(familySize, candidate) {
     const RCI = new Array();
     const replacement = 10 - familySize;
@@ -96,7 +101,8 @@ function findSubsets(nums, n) {
 module.exports = {
     isPrime,
     containsReplacement,
-    nextCandidate
+    nextCandidate,
+    getRCI
 }
 // Driver Code
 // let arr = [1, 2, 3];
