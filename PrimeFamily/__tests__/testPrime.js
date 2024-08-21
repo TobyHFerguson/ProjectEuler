@@ -1,6 +1,26 @@
 const prime = require('../src/prime')
 
 describe('Some Tests', () => {
+    describe('findSubsets() tests', () => {
+        it('should return an empty set given an empty set', () => {
+            const expected = [[]]
+            const testCase = []
+            const result = prime.findSubsets(testCase)
+            expect(result).toEqual(expected)
+        })
+        it('should return the powerset', () => {
+            const expected = [
+                [],       [ 1 ],
+                [ 2 ],    [ 1, 2 ],
+                [ 3 ],    [ 1, 3 ],
+                [ 2, 3 ], [ 1, 2, 3 ]
+              ]
+            const testCase = [1,2,3]
+            const result = prime.findSubsets(testCase)
+            expect(result).toEqual(expected)
+
+        })
+    })
     describe('getRCI() tests', () => {
         it('should detect a single digit', () => {
             const expected = [2];

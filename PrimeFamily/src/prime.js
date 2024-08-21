@@ -81,9 +81,11 @@ function getSubsets(RCI) {
 
 
 // Function to find the subsets of the given array
-function findSubsets(nums, n) {
+function findSubsets(nums) {
     // Loop through all possible subsets using bit manipulation
-    const numSubsets = (1 << n);
+    const result = []
+    const n = nums.length;
+    const numSubsets = (1 << n); // 2^^n
     for (let i = 0; i < numSubsets; i++) {
         // Loop through all elements of the input array
         const subset = []
@@ -94,15 +96,18 @@ function findSubsets(nums, n) {
                 subset.push(nums[j])
             }
         }
-        console.log(`i: ${i}`, subset);
+        result.push(subset)
     }
+    console.log(result);
+    return result;
 }
 
 module.exports = {
     isPrime,
     containsReplacement,
     nextCandidate,
-    getRCI
+    getRCI,
+    findSubsets
 }
 // Driver Code
 // let arr = [1, 2, 3];
