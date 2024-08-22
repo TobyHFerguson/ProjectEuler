@@ -122,6 +122,7 @@ function replaceDigits(number, positions, replacement) {
     const x = [...String(number)];
     const r = String(replacement);
     for (var i of positions) {
+        if ((i === 0 && replacement === 0) || (i > x.length - 1)) continue
         x[i] = replacement;
     }
     const result = Number(x.join(''));

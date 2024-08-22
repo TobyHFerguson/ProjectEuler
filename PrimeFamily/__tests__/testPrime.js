@@ -1,7 +1,7 @@
 const prime = require('../src/prime')
 
 describe('Some Tests', () => {
-    
+
     describe('generateFamily() tests', () => {
         it('should replace the last digit', () => {
             const expected = [10, 11,12, 13, 14, 15, 16,17, 18, 19]
@@ -37,6 +37,16 @@ describe('Some Tests', () => {
         })
         it('should replace non-adjacent digits', () => {
             const expected = 1331;
+            const actual = prime.replaceDigits(3333, [0,3], 1)
+            expect(actual).toEqual(expected);
+        })
+        it('should not replace the leading digit with a 0', () => {
+            const expected = 3330;
+            const actual = prime.replaceDigits(3333, [0,3], 0)
+            expect(actual).toEqual(expected);
+        })
+        it('should ignore any positions not within the given number', () => {
+            const expected = 133;
             const actual = prime.replaceDigits(333, [0,3], 1)
             expect(actual).toEqual(expected);
         })
