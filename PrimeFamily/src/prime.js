@@ -68,23 +68,16 @@ function getRCI(familySize, candidate) {
     return RCI
 }
 
-function getRCITests() {
-    console.log(getRCI(8, 101).toString())
-    console.log(getRCI(8, 131).toString())
-}
 
-function getSubsets(RCI) {
-    return RCI.permutations();
-}
-
-
-
-
-// Function to find the subsets of the given array
-function findSubsets(nums) {
+/**
+ * Return the powerset of the given set
+ * @param {number[]} set the set of numbers
+ * @returns 
+ */
+function findSubsets(set) {
     // Loop through all possible subsets using bit manipulation
     const result = []
-    const n = nums.length;
+    const n = set.length;
     const numSubsets = (1 << n); // 2^^n
     for (let i = 0; i < numSubsets; i++) {
         // Loop through all elements of the input array
@@ -93,25 +86,56 @@ function findSubsets(nums) {
             // Check if the jth bit is set in the current subset
             if ((i & (1 << j)) !== 0) {
                 // If the jth bit is set, add the jth element to the subset
-                subset.push(nums[j])
+                subset.push(set[j])
             }
         }
         result.push(subset)
     }
-    console.log(result);
     return result;
 }
 
+/**
+ * generateFamily - from a number, an list of positions to be substituted, generate the corresponding 
+ * family of prime numbers
+ * 
+ * @param {number} number the number from which to generate the family
+ * @param {number[]} indices the indices of the digits to be replaced
+ * @return {number[]} the family of prime numbers
+ */
+function generateFamily(number, indices) {
+    const result = []
+    for (i = 0; i<10; i++) {
+        const n =  replaceDigits(number, indices, i)
+        result.push(n)
+    }
+    return result;
+}
+/**
+ * Replace the digits in the given number at the given positions with the replacement digit
+ * @param {number} number the number whose digits are to be replaced
+ * @param {number[]} positions the positions within number where replacemet is to occur
+ * @param {number} replacement the digit that is the replacement
+ * @returns 
+ */
+function replaceDigits(number, positions, replacement) {
+    if (positions.length === 0) return number;
+    const x = [...String(number)];
+    const r = String(replacement);
+    for (var i of positions) {
+        x[i] = replacement;
+    }
+    const result = Number(x.join(''));
+    return result;
+}
 module.exports = {
     isPrime,
     containsReplacement,
     nextCandidate,
     getRCI,
-    findSubsets
+    replaceDigits,
+    findSubsets,
+    generateFamily
 }
-// Driver Code
-// let arr = [1, 2, 3];
-// let n = arr.length;
-// findSubsets(arr, n);
+
 
 

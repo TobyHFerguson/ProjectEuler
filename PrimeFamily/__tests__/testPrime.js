@@ -1,6 +1,46 @@
 const prime = require('../src/prime')
 
 describe('Some Tests', () => {
+    
+    describe('generateFamily() tests', () => {
+        it('should replace the last digit', () => {
+            const expected = [10, 11,12, 13, 14, 15, 16,17, 18, 19]
+            const actual = prime.generateFamily(11, [1])
+            expect(actual).toEqual(expected)
+        })
+        it('should replace the first digit', () => {
+            const expected = [1, 11, 21, 31, 41, 51, 61, 71, 81, 91]
+            const actual = prime.generateFamily(11, [0])
+            expect(actual).toEqual(expected)
+        })
+    })
+    describe('replaceDigits() tests', () => {
+        it('should return original number if no positions provided', () => {
+            const expected = 123
+            const actual = prime.replaceDigits(123, [], 9)
+            expect(actual).toEqual(expected)
+        })
+        it('should replace left most digit', () => {
+            const expected = 923
+            const actual = prime.replaceDigits(123, [0], 9)
+            expect(actual).toEqual(expected)
+        })
+        it('should replace rightmost digit', () => {
+            const expected = 13;
+            const actual = prime.replaceDigits(11, [1], 3)
+            expect(actual).toEqual(expected);
+        })
+        it('should replace adjacent digits', () => {
+            const expected = 1331;
+            const actual = prime.replaceDigits(1111, [1,2], 3)
+            expect(actual).toEqual(expected);
+        })
+        it('should replace non-adjacent digits', () => {
+            const expected = 1331;
+            const actual = prime.replaceDigits(333, [0,3], 1)
+            expect(actual).toEqual(expected);
+        })
+    })
     describe('findSubsets() tests', () => {
         it('should return an empty set given an empty set', () => {
             const expected = [[]]
