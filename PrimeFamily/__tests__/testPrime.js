@@ -28,6 +28,11 @@ describe('Some Tests', () => {
             const actual = prime.generateFamily(13, [0])
             expect(actual).toEqual(expected)
         })
+        it('should generate the family for 56003', () => {
+            const expected = [56003, 56113, 56223, 56333, 56443, 56553, 56663, 56773, 56883, 56993]
+            const actual = prime.generateFamily(56003, [2,3])
+            expect(actual).toEqual(expected)
+        })
     })
     describe('replaceDigits() tests', () => {
         it('should return original number if no positions provided', () => {
