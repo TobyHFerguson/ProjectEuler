@@ -5,6 +5,12 @@ describe('Some Tests', () => {
         it('should find a 6 family from 13', () => {
             expect(prime.checkCandidate(13, 6)).toBeTruthy();
         })
+        it('should not find a 5 family from 13', () => {
+            expect(prime.checkCandidate(13, 5)).toBeFalsy();
+        })
+        it('should find a 7 family from 56003', () => {
+            expect(prime.checkCandidate(56003, 7)).toBeTruthy();
+        })
     })
     describe('generateFamily() tests', () => {
         it('should replace the last digit', () => {
@@ -15,6 +21,11 @@ describe('Some Tests', () => {
         it('should replace the first digit', () => {
             const expected = [11, 21, 31, 41, 51, 61, 71, 81, 91]
             const actual = prime.generateFamily(11, [0])
+            expect(actual).toEqual(expected)
+        })
+        it('should generate the family for 13', () => {
+            const expected = [13, 23, 33, 43, 53, 63, 73, 83, 93]
+            const actual = prime.generateFamily(13, [0])
             expect(actual).toEqual(expected)
         })
     })
@@ -77,7 +88,7 @@ describe('Some Tests', () => {
     })
     describe('getRCI() tests', () => {
         it('should detect a single digit', () => {
-            const expected = {1: [2]};
+            const expected = {'1': [2]};
             const actual = prime.getRCI(9,881)
             console.log(actual);
             expect(actual).toEqual(expected);
@@ -94,8 +105,14 @@ describe('Some Tests', () => {
         })
         it('should detect several digits', () => {
             const test = 1181811
-            const expected = {1: [0, 1, 3, 5, 6 ], 8:[2,4]}
+            const expected = {1: [0, 1, 3, 5, 6 ], '8':[2,4]}
             const actual = prime.getRCI(2,test)
+            expect(actual).toEqual(expected)
+        })
+        it('should return the two digits for case 13', () => {
+            const test = 13
+            const expected = {1: [0], 3:[1]}
+            const actual = prime.getRCI(6,test)
             expect(actual).toEqual(expected)
         })
     })
