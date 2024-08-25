@@ -52,7 +52,8 @@ function containsReplacement(familySize, candidate) {
 }
 
 /**
- * Return the an array of those digits in the candidate that can be replaced, given the family size
+ * Return the Replaceable Candidate Indices - those indices in the given number that can be replaced,
+ * given the family size
  * @param {number} familySize the family size
  * @param {number} candidate the candidate number
  * @returns {array[number]} the indices of the replaceable digits
@@ -74,7 +75,7 @@ function getRCI(familySize, candidate) {
  * @param {number[]} set the set of numbers
  * @returns 
  */
-function findSubsets(set) {
+function powerset(set) {
     // Loop through all possible subsets using bit manipulation
     const result = []
     const n = set.length;
@@ -134,8 +135,8 @@ module.exports = {
     nextCandidate,
     getRCI,
     replaceDigits,
-    findSubsets,
-    generateFamily
+    powerset,
+    generateFamily,
 }
 
 
