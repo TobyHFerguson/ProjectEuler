@@ -17,15 +17,11 @@ function* nextCandidate(familySize) {
         }
         const x = yield candidate;
 
-        candidate = x ? x : candidate + 2;
+        candidate = x ? (x % 2 !== 0 ? x : x + 1) : candidate + 2;
     }
 }
 
 
-const gen = nextCandidate(6);
-for (let i = 0; i < 100; i++) {
-    console.log(gen.next().value);
-}
 
 /**
  * Determine if a given candidate number contains replacement digits for a given family size
@@ -107,7 +103,7 @@ function generateFamily(number, indices) {
     const result = []
     for (i = 0; i<10; i++) {
         const n =  replaceDigits(number, indices, i)
-        result.push(n)
+        if (!result.includes(n)) result.push(n)
     }
     return result;
 }
@@ -136,7 +132,7 @@ module.exports = {
     getRCI,
     replaceDigits,
     powerset,
-    generateFamily,
+    generateFamily
 }
 
 

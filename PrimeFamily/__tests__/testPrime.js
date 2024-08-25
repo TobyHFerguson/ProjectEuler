@@ -9,7 +9,7 @@ describe('Some Tests', () => {
             expect(actual).toEqual(expected)
         })
         it('should replace the first digit', () => {
-            const expected = [1, 11, 21, 31, 41, 51, 61, 71, 81, 91]
+            const expected = [11, 21, 31, 41, 51, 61, 71, 81, 91]
             const actual = prime.generateFamily(11, [0])
             expect(actual).toEqual(expected)
         })
@@ -51,11 +51,11 @@ describe('Some Tests', () => {
             expect(actual).toEqual(expected);
         })
     })
-    describe('findSubsets() tests', () => {
+    describe('powerset() tests', () => {
         it('should return an empty set given an empty set', () => {
             const expected = [[]]
             const testCase = []
-            const result = prime.findSubsets(testCase)
+            const result = prime.powerset(testCase)
             expect(result).toEqual(expected)
         })
         it('should return the powerset', () => {
@@ -66,7 +66,7 @@ describe('Some Tests', () => {
                 [ 2, 3 ], [ 1, 2, 3 ]
               ]
             const testCase = [1,2,3]
-            const result = prime.findSubsets(testCase)
+            const result = prime.powerset(testCase)
             expect(result).toEqual(expected)
 
         })
@@ -114,8 +114,8 @@ describe('Some Tests', () => {
         it('should restart at the given number', () => {
             var gen = prime.nextCandidate(9);
             gen.next();
-            var actual = gen.next(16);
-            expected(actual).toBe(17) 
+            var actual = gen.next(16).value;
+            expect(actual).toBe(17) 
         })
     })
     describe('tests of isPrime()', () => {
