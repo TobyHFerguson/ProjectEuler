@@ -55,12 +55,18 @@ function containsReplacement(familySize, candidate) {
  * @returns {array[number]} the indices of the replaceable digits
  */
 function getRCI(familySize, candidate) {
-    const RCI = new Array();
+    const RCI = {}
     const replacement = 10 - familySize;
     const c = String(candidate)
     for (var i = 0; i < c.length; i++) {
         const digit = Number(c[i])
-        if (digit <= replacement) RCI.push(i);
+        if (digit <= replacement) {
+            if (RCI[digit]) {
+                RCI[digit].push(i)
+            } else {
+                RCI[digit] = [i]
+            }
+        }
     }
     return RCI
 }

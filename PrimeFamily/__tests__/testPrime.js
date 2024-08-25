@@ -73,25 +73,25 @@ describe('Some Tests', () => {
     })
     describe('getRCI() tests', () => {
         it('should detect a single digit', () => {
-            const expected = [2];
+            const expected = {1: [2]};
             const actual = prime.getRCI(9,881)
             console.log(actual);
             expect(actual).toEqual(expected);
         })
         it('should detect a middle digit', () => {
-            const expected = [1];
+            const expected = {1: [1]};
             const actual = prime.getRCI(9,818)
             expect(actual).toEqual(expected);
         })
         it('should detect a leading digit', () => {
-            const expected = [0];
+            const expected = {1:[0]};
             const actual = prime.getRCI(9,188)
             expect(actual).toEqual(expected);
         })
         it('should detect several digits', () => {
             const test = 1181811
-            const expected = [0, 1, 3, 5, 6 ]
-            const actual = prime.getRCI(9,test)
+            const expected = {1: [0, 1, 3, 5, 6 ], 8:[2,4]}
+            const actual = prime.getRCI(2,test)
             expect(actual).toEqual(expected)
         })
     })
