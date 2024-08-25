@@ -1,7 +1,11 @@
 const prime = require('../src/prime')
 
 describe('Some Tests', () => {
-
+    describe('checkCandidate() tests', () => {
+        it('should find a 6 family from 13', () => {
+            expect(prime.checkCandidate(13, 6)).toBeTruthy();
+        })
+    })
     describe('generateFamily() tests', () => {
         it('should replace the last digit', () => {
             const expected = [10, 11,12, 13, 14, 15, 16,17, 18, 19]

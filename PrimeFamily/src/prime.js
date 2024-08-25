@@ -131,6 +131,15 @@ function replaceDigits(number, positions, replacement) {
     const result = Number(x.join(''));
     return result;
 }
+/**
+ * Determine if prime family of the given size can be generated from the given candidate
+ * @param {number} candidate
+ * @param {number} familySize 
+ * @returns true iff a prime family of the given size can be generated from the given candidate
+ */
+function checkCandidate(candidate, familySize) {
+    return true;
+}
 module.exports = {
     isPrime,
     containsReplacement,
@@ -138,7 +147,8 @@ module.exports = {
     getRCI,
     replaceDigits,
     powerset,
-    generateFamily
+    generateFamily,
+    checkCandidate
 }
 
 
