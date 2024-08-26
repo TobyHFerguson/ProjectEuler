@@ -60,8 +60,8 @@ describe('Some Tests', () => {
             const actual = prime.replaceDigits(3333, [0,3], 1)
             expect(actual).toEqual(expected);
         })
-        it('should not replace the leading digit with a 0', () => {
-            const expected = 3330;
+        it('should not do any replacements when the replacement is 0 and one of the positions is 0', () => {
+            const expected = 3333;
             const actual = prime.replaceDigits(3333, [0,3], 0)
             expect(actual).toEqual(expected);
         })

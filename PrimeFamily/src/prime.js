@@ -121,11 +121,9 @@ function generateFamily(number, indices) {
  * @returns 
  */
 function replaceDigits(number, positions, replacement) {
-    if (positions.length === 0) return number;
+    if (positions.length === 0 || (replacement === 0 && positions.includes(0))) return number;
     const x = [...String(number)];
-    const r = String(replacement);
     for (var i of positions) {
-        if ((i === 0 && replacement === 0) || (i > x.length - 1)) continue
         x[i] = replacement;
     }
     const result = Number(x.join(''));
