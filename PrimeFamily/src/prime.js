@@ -142,10 +142,28 @@ function checkCandidate(candidate, familySize) {
         for (var positions of position_set) {
             const family = generateFamily(candidate, positions)
             const primeFamily = family.filter(p => isPrime(p))
-            if (primeFamily.length === familySize) return true
+            if (primeFamily.length === familySize) {
+                return primeFamily}
         }
     }
     return false 
+}
+/**
+ * Find a prime family of the given size, with a limit as to how big it can be (defaults to 1^6)
+ * @param {number} familySize
+ * @param {number} [limit] defaults to 1 million
+ * @returns number that has the given prime family or -1 if none found
+ */
+function findFamily(familySize, limit = 1000000) {
+    const generator = nextCandidate(familySize);
+    var candidate;
+    var primeFamily
+    while ((candidate = generator.next().value) < limit) {
+        if (primeFamily = checkCandidate(candidate, familySize)) {
+            return primeFamily
+        }
+    }
+    return -1;
 }
 module.exports = {
     isPrime,
@@ -155,7 +173,8 @@ module.exports = {
     replaceDigits,
     powerset,
     generateFamily,
-    checkCandidate
+    checkCandidate,
+    findFamily
 }
 
 
