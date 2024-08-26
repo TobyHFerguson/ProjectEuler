@@ -2,6 +2,17 @@ const prime = require('../src/prime')
 
 describe('Some Tests', () => {
     describe('findFamily() tests', () => {
+        it('should find an 8 family', () => {
+            const expected = [121313,
+                222323,
+                323333,
+                424343,
+                525353,
+                626363,
+                828383,
+                929393]
+            expect(prime.findFamily(8)).toEqual(expected)
+        })
         it('should find a 6 family', () => {
             const expected = [13, 23, 43, 53, 73, 83]
             expect(prime.findFamily(6)).toEqual(expected)
